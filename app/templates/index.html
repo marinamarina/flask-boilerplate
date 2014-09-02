@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Home page
+{% endblock %}
+
+{% block inner_container %}
+        <h1>That is an index page</h1>
+        <p>Welcome to my website, {% if name %} {{ name }} {% else %} Stranger {% endif %}!</p>
+        {% if not known %}
+            <p>Pleased to meet you</p>
+        {% else %}
+            <p>Happy to see you</p>
+        {% endif %}
+        <p>The current time is {{ moment(current_time).format('LLL') }}</p>
+        <p>That was {{ moment(current_time).fromNow(refresh=True) }} </p>
+{% endblock %}

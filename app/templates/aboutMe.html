@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %} About me {% endblock %}
+
+{% block inner_container %}
+        <h1>That is an about me page</h1>
+        <p>Welcome, {% if name %} {{name}}{% else %} Stranger{% endif %}!</p>
+        <form method="POST">
+            <div class="block">
+                {{ form.name.label }} {{ form.name(id='name-field') }}
+            </div>
+            <div class="block">
+                {{ form.breed.label }} {{ form.breed(id='breed-field') }}
+            </div>
+            {{ form.submit() }}
+        </form>
+{% endblock %}
