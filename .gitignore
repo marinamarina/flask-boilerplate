@@ -15,7 +15,7 @@ cover
 *.sqlite
 
 # virtualenv environments
-env*/
+sandbox*/
 
 # build artifacts from python setup.py build or python setup.py install
 build/
