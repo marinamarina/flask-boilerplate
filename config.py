@@ -36,12 +36,31 @@ class DeploymentConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
         'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 
+    @classmethod
+    def init_app(cls, app):
+        Config.init_app(app)
+
+class HerokuConfig(DeploymentConfig):
+
+    @classmethod
+    def init_app(cls, app):
+        DeploymentConfig.init_app(app)
+
+        #log to stderr
+        import logging
+        from logging import StreamHandler
+        file_handler = StreamHandler()
+        file_handler.setLevel(logging.WARNING)
+        app.logger.addHandler(file_handler)
+
+
 # config dictionary
 # mapping various configurations
 config = {
     'development' : DevelopmentConfig,
     'testing' : TestingConfig,
     'deployment' : DeploymentConfig,
+    'heroku': HerokuConfig,
 
     'default' : DevelopmentConfig
 }

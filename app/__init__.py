@@ -4,6 +4,8 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail
 from config import config
+from werkzeug.contrib.fixers import ProxyFix
+
 
 bootstrap = Bootstrap()
 moment = Moment()
@@ -28,5 +30,7 @@ def create_app(config_name):
     #attach routes and custom error pages here
     from main import main as main_blueprint
     app.register_blueprint(main_blueprint)
+
+    app.wsgi_app = ProxyFix(app.wsgi_app)
 
     return app
