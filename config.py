@@ -60,6 +60,7 @@ config = {
     'development' : DevelopmentConfig,
     'testing' : TestingConfig,
     'deployment' : DeploymentConfig,
+    'heroku': HerokuConfig,
 
     'default' : DevelopmentConfig
 }
